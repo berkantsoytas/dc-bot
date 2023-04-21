@@ -15,7 +15,7 @@ CFLAGS  += -O0 -g -pthread -Wall \
 LDFLAGS  = -L$(SUB)/lib
 LDLIBS   = -ldiscord -lcurl
 
-all: build_sub $(BOTS) target
+all: build_sub $(BOTS) target run
 
 build_sub:
 	$(MAKE) -C $(SUB)
@@ -30,5 +30,9 @@ target:
 
 clean:
 	@ rm -f $(SRC)/$(BOT)
+
+run: all
+	@ echo -e 'Running $(BOT)...\n'
+	@ ./build/$(BOT)
 
 .PHONY: build_sub all echo clean
