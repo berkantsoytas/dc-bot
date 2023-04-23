@@ -47,6 +47,11 @@
 build/
 .vscode/
 
+# Configuration and log files
+config.json
+bot.log
+http.log
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
