@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "discord.h"
 #include "log.h"
@@ -15,10 +16,23 @@ int main(int argc, char *argv[])
 
     ccord_global_init();
     struct discord *client = discord_config_init(config_file);
+    assert(NULL != client && "Could not initialize client");
 
     discord_set_on_ready(client, &on_ready);
+    discord_set_on_guild_role_create(client, &log_on_role_create);
+    discord_set_on_guild_role_update(client, &log_on_role_update);
+    discord_set_on_guild_role_delete(client, &log_on_role_delete);
+
+    discord_set_prefix(client, "!");
+
     discord_set_on_command(client, "ping", &on_ping);
     discord_set_on_command(client, "pong", &on_pong);
+    discord_set_on_command(client, "role_create", &on_role_create);
+    discord_set_on_command(client, "role_delete", &on_role_delete);
+    discord_set_on_command(client, "role_add", &on_role_member_add);
+    discord_set_on_command(client, "role_remove", &on_role_member_remove);
+    discord_set_on_command(client, "role_list", &on_role_list);
+    discord_set_on_command(client, "get_user", &on_member_get);
 
     print_usage();
     fgetc(stdin); // wait for input

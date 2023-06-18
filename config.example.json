@@ -9,16 +9,13 @@
       "enable": true,
       "filename": "http.log"
     },
-    "disable_modules": [
-      "WEBSOCKETS",
-      "USER_AGENT"
-    ]
+    "disable_modules": ["WEBSOCKETS", "USER_AGENT"]
   },
   "discord": {
-    "token": "YOUR-BOT-TOKEN",
+    "token": "<Your Discord Bot Token>",
     "default_prefix": {
       "enable": false,
-      "prefix": "YOUR-COMMANDS-PREFIX"
+      "prefix": "<Your Default Prefix>"
     }
   }
 }
